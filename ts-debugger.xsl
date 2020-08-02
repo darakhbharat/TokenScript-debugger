@@ -27,24 +27,19 @@
 	</xsl:template>
 	<xsl:template match="ts:item-view|ts:view">
 		<iframe height="300" width="90%" title="Iframe">
-				<xsl:for-each select="html:style">
-						<style type="text/css">
-							<xsl:value-of select="."/>
-						</style>
-					</xsl:for-each>
-					<xsl:for-each select="html:script">
-						<script type="text/javascript">
-							<xsl:value-of select="."/>
-						</script>
-					</xsl:for-each>
-			
-		
-					<xsl:for-each select="html:body">
-							<xsl:copy-of select="."/>
-					</xsl:for-each>
-				 
-			
-			
+			<xsl:for-each select="html:style">
+				<style type="text/css">
+					<xsl:value-of select="."/>
+				</style>
+			</xsl:for-each>
+			<xsl:for-each select="html:script">
+				<script type="text/javascript">
+					<xsl:value-of select="."/>
+				</script>
+			</xsl:for-each>
+			<xsl:for-each select="html:body">
+				<xsl:copy-of select="."/>
+			</xsl:for-each>
 		</iframe>
 	</xsl:template>
 </xsl:transform>

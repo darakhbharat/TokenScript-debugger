@@ -8,7 +8,7 @@ function loadIframe(){
 		
 		iframeContentDocument = iframe.contentDocument || iframe.contentWindow.document;
 		iframeContentDocument.write(wrapper.innerHTML);
-		//iframe.textContent = "";
+		iframe.textContent = "";
 	}
 
 }
