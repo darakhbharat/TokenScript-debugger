@@ -17,7 +17,7 @@
 		<html>
 			<head>
 				<title>TokenScript Debugger</title>
-				<script src="jquery.min.js" type="text/javascript" charset="utf-8">/* */</script>
+				<!--script src="jquery.min.js" type="text/javascript" charset="utf-8">/* */</script-->
 				<script src="ts-debugger.js" type="text/javascript" charset="utf-8">/* */</script>
 			</head>
 			<body onload="loadIframe()">
@@ -27,25 +27,24 @@
 	</xsl:template>
 	<xsl:template match="ts:item-view|ts:view">
 		<iframe height="300" width="90%" title="Iframe">
-			<body>
-				<div class="container">
-					<xsl:for-each select="html:style">
-						<div class="css">
+				<xsl:for-each select="html:style">
+						<style type="text/css">
 							<xsl:value-of select="."/>
-						</div>
+						</style>
 					</xsl:for-each>
 					<xsl:for-each select="html:script">
-						<div class="script">
+						<script type="text/javascript">
 							<xsl:value-of select="."/>
-						</div>
+						</script>
 					</xsl:for-each>
+			
+		
 					<xsl:for-each select="html:body">
-						<div class="body">
 							<xsl:copy-of select="."/>
-						</div>
 					</xsl:for-each>
-				</div>
-			</body>
+				 
+			
+			
 		</iframe>
 	</xsl:template>
 </xsl:transform>
