@@ -17,6 +17,7 @@
 		<html>
 			<head>
 				<title>TokenScript Debugger</title>
+				<h3>Debug your TokenScript XML by refreshing the page</h3>
 				<!--script src="jquery.min.js" type="text/javascript" charset="utf-8">/* */</script-->
 				<script src="ts-debugger.js" type="text/javascript" charset="utf-8">/* */</script>
 			</head>
@@ -26,6 +27,7 @@
 		</html>
 	</xsl:template>
 	<xsl:template match="ts:item-view|ts:view">
+		<h5>TS input details: <xsl:value-of select="concat(local-name(.), ' for ', local-name(..), ' having type as ', ../@type )"/></h5>
 		<iframe height="300" width="90%" title="Iframe">
 			<xsl:for-each select="html:style">
 				<style type="text/css">
@@ -37,9 +39,16 @@
 					<xsl:value-of select="."/>
 				</script>
 			</xsl:for-each>
-			<xsl:for-each select="html:body">
-				<xsl:copy-of select="."/>
-			</xsl:for-each>
+			<xsl:choose>
+				<xsl:when test="html:body">
+					<xsl:for-each select="html:body">
+						<xsl:copy-of select="."/>
+					</xsl:for-each>
+				</xsl:when>
+				<xsl:otherwise>
+					<h3 style="margin-left: 44%;margin-top: 11%;">No HTML Content</h3>
+				</xsl:otherwise>
+			</xsl:choose>
 		</iframe>
 	</xsl:template>
 </xsl:transform>
