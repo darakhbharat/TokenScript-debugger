@@ -13,7 +13,7 @@ function loadIframe(){
 		*/
 		var doc = iframe.contentWindow.document;
 		doc.open();
-		doc.write(div[0].innerHTML);
+		doc.write(div[i].innerHTML);
 		doc.close();
 	}
 }
