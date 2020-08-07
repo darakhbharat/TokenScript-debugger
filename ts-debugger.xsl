@@ -18,8 +18,30 @@
 			<head>
 				<title>TokenScript Debugger</title>
 				<h3>Debug your TokenScript XML by refreshing the page</h3>
-				<!--script src="jquery.min.js" type="text/javascript" charset="utf-8">/* */</script-->
-				<script src="ts-debugger.js" type="text/javascript" charset="utf-8">/* */</script>
+				<!--script src="ts-debugger.js" type="text/javascript" charset="utf-8">/* */</script-->
+				<script type="text/javascript" charset="utf-8">
+				<![CDATA[
+				function loadIframe(){
+					var iframes = document.getElementsByTagName("iframe");
+					var div = document.getElementsByClassName("iframe");
+					for(var i=0; i<iframes.length; i++){
+						var iframe = iframes[i];
+						/*var textContent = iframe.textContent;
+						var wrapper = document.createElement('div');
+						wrapper.innerHTML = textContent;
+						
+						iframeContentDocument = iframe.contentWindow.document;
+						iframeContentDocument.write(wrapper.innerHTML);
+						iframe.textContent = "";
+						*/
+						var doc = iframe.contentWindow.document;
+						doc.open();
+						doc.write(div[0].innerHTML);
+						doc.close();
+					}
+				}
+				]]>
+				</script>
 			</head>
 			<body onload="loadIframe()">
 				<xsl:apply-templates select="@*|node()"/>
@@ -28,7 +50,7 @@
 	</xsl:template>
 	<xsl:template match="ts:item-view|ts:view">
 		<h5>TS input details: <xsl:value-of select="concat(local-name(.), ' for ', local-name(..), ' having type as ', ../@type )"/></h5>
-		<iframe height="300" width="90%" title="Iframe">
+		<div class="iframe" style="display: none;">
 			<xsl:for-each select="html:style">
 				<style type="text/css">
 					<xsl:value-of select="."/>
@@ -49,6 +71,9 @@
 					<h3 style="margin-left: 44%;margin-top: 11%;">No HTML Content</h3>
 				</xsl:otherwise>
 			</xsl:choose>
+		</div>
+		<iframe src="about:blank" height="300" width="90%" title="Iframe">
+			
 		</iframe>
 	</xsl:template>
 </xsl:transform>
