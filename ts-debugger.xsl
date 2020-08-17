@@ -73,13 +73,23 @@
 					.cardContiner {
 					border: solid #777;
 					width: 90%;
+					margin-bottom: 1em;
 					}
 					.noContent {
 					text-align: center;
 					margin-top: 50;
 					}
 					.iframe {
-					border: 1px solid darkolivegreen;
+					/* border: 1px solid #777; */
+					}
+					table.view, th {
+						width: 98%;
+						border: 1px solid #777;
+					}
+					table.view th {
+						text-align: left;
+						font: caption;
+						padding-left: 5px;						
 					}
 				</style>
 
@@ -122,17 +132,23 @@
 						</xsl:otherwise>
 					</xsl:choose>
 				</div>
-				<xsl:choose>
-					<xsl:when test="following-sibling::ts:item-view">
-						<iframe src="about:blank" height="300" width="59%" title="Iframe" class="iframe"/>
-					</xsl:when>
-					<xsl:when test="self::ts:item-view">
-						<iframe src="about:blank" height="300" width="39%" title="Iframe" class="iframe"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<iframe src="about:blank" height="300" width="98%" title="Iframe" class="iframe"/>
-					</xsl:otherwise>
-				</xsl:choose>
+				<table class="view">
+					<tbody>
+						<tr><th><xsl:value-of select="local-name(.)"/></th></tr>
+						<tr>
+						  <td>
+							<iframe src="about:blank" height="150" width="100%" title="Iframe" class="iframe">
+								<xsl:attribute name="height">
+									<xsl:choose>
+										<xsl:when test="self::ts:item-view">150</xsl:when>
+										<xsl:otherwise>300</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
+							</iframe>
+						  </td>
+						</tr>
+					</tbody>
+				</table>
 			</xsl:for-each>
 		</div>
 	</xsl:template>
