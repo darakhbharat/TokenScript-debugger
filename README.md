@@ -13,12 +13,11 @@
   
 3. Most of the browsers does not support loading of local referenced file due to security policy. Considering this need to either run the TokenScript XML file in local HTTP server or perform below one time setting on Google Chrome.
   
-   Steps to enable Google Chrome to load the local file references.
-	   - Right click on Google Chrome icon 
-	   - Go to Properties 
-	   - Go target field to add --allow-access-from-files as shown below.
-     
+   #### Steps to enable Google Chrome to load the local file references.
+	* Right click on Google Chrome icon 
+	* Go to Properties 
+	* Go target field to add --allow-access-from-files as shown below.
        
-       "your_path\chrome.exe" --allow-access-from-files
+          "your_path\chrome.exe" --allow-access-from-files
      
 4. Now Start the Google Chrome browser and open / drag TokenScript XML file to view it.
